@@ -13,7 +13,7 @@ def search_files():
 
 @app.route('/list_files', methods=['GET'])
 def list_files():
-    files = conn.list_products()
+    files = conn.list_files()
     return jsonify({"files": files})
 
 if __name__ == "__main__":
