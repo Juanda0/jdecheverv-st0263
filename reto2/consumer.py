@@ -44,10 +44,6 @@ def search_files(ch, method, properties, body):
     publish_response(ch, method, properties, matched_files)
 
 def publish_response(ch, method, properties, response):
-    print("properties:", properties)
-    print("Reply_to:", properties.reply_to)
-    print("Corr_id:", properties.correlation_id)
-
     channel.basic_publish(
         exchange='',
         routing_key=properties.reply_to,
