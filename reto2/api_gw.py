@@ -11,16 +11,20 @@ def search_files():
     file_name = request.args.get('file_name')
     try:
         files = conn.search_files(file_name)
+        print("Retrieved by GRCP")
     except:
         files = RunAMQP(file_name, function="search_files")
+        print("Retrieved by AMQP")
     return jsonify(files)
 
 @app.route('/list_files', methods=['GET'])
 def list_files():
     try:
         files = conn.list_files()
+        print("Retrieved by GRCP")
     except:
         files = RunAMQP("", function="list_files")
+        print("Retrieved by AMQP")
 
     return jsonify(files)
 
