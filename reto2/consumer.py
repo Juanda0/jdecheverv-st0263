@@ -31,6 +31,7 @@ def search_files(ch, method, properties, body):
     target_string = body.decode('utf-8')
     print("Searching products that match string: " + target_string)
     matched_files = []
+    print(f"TARGET STRING: {target_string}")
     for file in os.listdir(DIRECTORY):
         if target_string in file:
             file_path = os.path.join(DIRECTORY, file)
