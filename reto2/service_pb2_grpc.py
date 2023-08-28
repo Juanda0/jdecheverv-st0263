@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import Service_pb2 as Service__pb2
+import service_pb2 as service__pb2
 
 
 class fileServiceStub(object):
@@ -16,13 +16,13 @@ class fileServiceStub(object):
         """
         self.SearchFiles = channel.unary_stream(
                 '/fileService/SearchFiles',
-                request_serializer=Service__pb2.File.SerializeToString,
-                response_deserializer=Service__pb2.multipleFilesResponse.FromString,
+                request_serializer=service__pb2.File.SerializeToString,
+                response_deserializer=service__pb2.multipleFilesResponse.FromString,
                 )
         self.ListAllFiles = channel.unary_stream(
                 '/fileService/ListAllFiles',
-                request_serializer=Service__pb2.Empty.SerializeToString,
-                response_deserializer=Service__pb2.multipleFilesResponse.FromString,
+                request_serializer=service__pb2.Empty.SerializeToString,
+                response_deserializer=service__pb2.multipleFilesResponse.FromString,
                 )
 
 
@@ -46,13 +46,13 @@ def add_fileServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'SearchFiles': grpc.unary_stream_rpc_method_handler(
                     servicer.SearchFiles,
-                    request_deserializer=Service__pb2.File.FromString,
-                    response_serializer=Service__pb2.multipleFilesResponse.SerializeToString,
+                    request_deserializer=service__pb2.File.FromString,
+                    response_serializer=service__pb2.multipleFilesResponse.SerializeToString,
             ),
             'ListAllFiles': grpc.unary_stream_rpc_method_handler(
                     servicer.ListAllFiles,
-                    request_deserializer=Service__pb2.Empty.FromString,
-                    response_serializer=Service__pb2.multipleFilesResponse.SerializeToString,
+                    request_deserializer=service__pb2.Empty.FromString,
+                    response_serializer=service__pb2.multipleFilesResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -76,8 +76,8 @@ class fileService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/fileService/SearchFiles',
-            Service__pb2.File.SerializeToString,
-            Service__pb2.multipleFilesResponse.FromString,
+            service__pb2.File.SerializeToString,
+            service__pb2.multipleFilesResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -93,7 +93,7 @@ class fileService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/fileService/ListAllFiles',
-            Service__pb2.Empty.SerializeToString,
-            Service__pb2.multipleFilesResponse.FromString,
+            service__pb2.Empty.SerializeToString,
+            service__pb2.multipleFilesResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
