@@ -7,7 +7,7 @@ message File {
 message singleFileResponse {
     string name = 1;
     string lastUpdated = 2;
-    double size = 3;
+    int32 size = 3;
 }
 
 message multipleFilesResponse {
