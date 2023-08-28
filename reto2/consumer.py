@@ -59,6 +59,6 @@ def publish_response(ch, method, properties, response):
     ch.basic_ack(delivery_tag=method.delivery_tag)
     print("Response sent to RabbitMQ!")
     
-channel.basic_consume(queue="list_files", on_message_callback=list_files, auto_ack=False)
-channel.basic_consume(queue="search_files", on_message_callback=search_files, auto_ack=False)
+channel.basic_consume(queue="queue1", on_message_callback=list_files, auto_ack=False)
+channel.basic_consume(queue="queue2", on_message_callback=search_files, auto_ack=False)
 channel.start_consuming()
