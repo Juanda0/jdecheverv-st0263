@@ -4,7 +4,7 @@ import glob
 import os
 import datetime
 from dotenv import load_dotenv
-from config import *
+from configs import *
 
 load_dotenv()
 RMQ_HOST = os.getenv('RMQ_HOST')
