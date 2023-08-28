@@ -9,8 +9,7 @@ conn = grpc_connection.grpc_connection()
 def search_files():
     file_name = request.args.get('file_name')
     files = conn.search_files(file_name)
-    print(files)
-    return jsonify({"files": str(files.files)})
+    return jsonify({"files": files})
 
 @app.route('/list_files', methods=['GET'])
 def list_files():

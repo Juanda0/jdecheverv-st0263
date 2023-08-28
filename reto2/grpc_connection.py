@@ -8,12 +8,16 @@ class grpc_connection:
         self.client = service_pb2_grpc.fileServiceStub(self.channel)
 
     def search_files(self, file_name):
-        response = self.client.SearchFiles(service_pb2.File(fileName=file_name))
-        return response
+        files = []
+        for response_stream in self.client.SearchFiles(service_pb2.File(fileName=file_name)):
+            for file in response_stream.files:
+                files.append({"name": file.name, "last_updated":file.lastUpdated, "size":file.size})
+        return files
 
     def list_files(self):
         files = []
-        for file in self.client.ListAllFiles(service_pb2.Empty()):
-            files.append(file)
+        for response_stream in self.client.ListAllFiles(service_pb2.Empty()):
+            for file in response_stream.files:
+                files.append({"name": file.name, "last_updated":file.lastUpdated, "size":file.size})
         return files
 
