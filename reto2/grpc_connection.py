@@ -7,11 +7,11 @@ class grpc_connection:
         self.channel = grpc.insecure_channel(GRPC_HOST)
         self.client = service_pb2_grpc.fileServiceStub(self.channel)
 
-    def search_product(self, file_name):
+    def search_files(self, file_name):
         response = self.client.SearchFiles(service_pb2.File(fileName=file_name))
         return response
 
-    def list_products(self):
+    def list_files(self):
         files = []
         for file in self.client.ListAllFiles(service_pb2.Empty()):
             files.append(file)

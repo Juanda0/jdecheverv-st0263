@@ -5,14 +5,14 @@ from configs import *
 app = Flask(__name__)
 conn = grpc_connection.grpc_connection()
 
-@app.route('/search_products', methods=['GET'])
-def search_products():
+@app.route('/search_files', methods=['GET'])
+def search_files():
     file_name = request.args.get('file_name')
-    files = conn.search_products(file_name)
+    files = conn.search_files(file_name)
     return jsonify({"files": str(files)})
 
-@app.route('/list_products', methods=['GET'])
-def list_products():
+@app.route('/list_files', methods=['GET'])
+def list_files():
     files = conn.list_products()
     return jsonify({"files": files})
 

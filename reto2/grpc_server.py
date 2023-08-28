@@ -6,7 +6,7 @@ from configs import *
 
 class FileService(service_pb2_grpc.fileServiceServicer):
    
-   def search_product(self, request, context):
+   def search_files(self, request, context):
       target_string = request.fileName
       print("Searching products that match string: " + target_string)
       matched_files = []
@@ -19,7 +19,7 @@ class FileService(service_pb2_grpc.fileServiceServicer):
                 matched_files.append(service_pb2.singleFileResponse(name = file, lastUpdated = file_mtime, size = file_size))
       yield service_pb2.multipleFilesResponse(files=matched_files)
 
-   def list_products(self, request, context):
+   def list_files(self, request, context):
       print("Listing all files")
       all_files_info = []
       for root, _, files in os.walk(DIRECTORY):
