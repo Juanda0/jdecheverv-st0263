@@ -12,7 +12,7 @@ def search_files():
     try:
         files = conn.search_files(file_name)
     except:
-        files = RunAMQP("", function="search_files")
+        files = RunAMQP(file_name, function="search_files")
     return jsonify(files)
 
 @app.route('/list_files', methods=['GET'])

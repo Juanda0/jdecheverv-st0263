@@ -1,6 +1,5 @@
 import json
 import pika
-import glob
 import os
 import datetime
 from dotenv import load_dotenv
@@ -27,8 +26,7 @@ def list_files(ch, method, properties, body):
     print(all_files_info)
     publish_response(ch, method, properties, all_files_info)
 
-def search_files(ch, method, properties, body):
-    target_string = body.decode('utf-8')
+def search_files(ch, method, properties, target_string):
     print("Searching products that match string: " + target_string)
     matched_files = []
     print(f"TARGET STRING: {target_string}")
