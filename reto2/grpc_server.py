@@ -24,6 +24,7 @@ class FileService(service_pb2_grpc.fileServiceServicer):
       all_files_info = []
       for root, _, files in os.walk(DIRECTORY):
         for file in files:
+            print(file)
             file_path = os.path.join(root, file)
             file_size = os.path.getsize(file_path)
             file_mtime = os.path.getmtime(file_path)
