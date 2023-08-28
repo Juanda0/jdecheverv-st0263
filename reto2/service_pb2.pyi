@@ -18,8 +18,8 @@ class singleFileResponse(_message.Message):
     SIZE_FIELD_NUMBER: _ClassVar[int]
     name: str
     lastUpdated: str
-    size: float
-    def __init__(self, name: _Optional[str] = ..., lastUpdated: _Optional[str] = ..., size: _Optional[float] = ...) -> None: ...
+    size: int
+    def __init__(self, name: _Optional[str] = ..., lastUpdated: _Optional[str] = ..., size: _Optional[int] = ...) -> None: ...
 
 class multipleFilesResponse(_message.Message):
     __slots__ = ["files"]
