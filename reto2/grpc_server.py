@@ -19,7 +19,7 @@ class FileService(service_pb2_grpc.fileServiceServicer):
             file_mtime_datetime = datetime.datetime.fromtimestamp(file_mtime)
             formatted_mtime = file_mtime_datetime.strftime("%Y-%m-%d %H:%M:%S")
             matched_files.append(service_pb2.singleFileResponse(name = file, lastUpdated = formatted_mtime, size = file_size))
-      return service_pb2.multipleFilesResponse(files=matched_files)
+      yield service_pb2.multipleFilesResponse(files=matched_files)
 
    def ListAllFiles(self, request, context):
       print("Listing all files")
@@ -32,7 +32,7 @@ class FileService(service_pb2_grpc.fileServiceServicer):
             formatted_mtime = file_mtime_datetime.strftime("%Y-%m-%d %H:%M:%S")
             all_files_info.append(service_pb2.singleFileResponse(name = file, lastUpdated = formatted_mtime, size = file_size))
       print(all_files_info)
-      return service_pb2.multipleFilesResponse(files=all_files_info)
+      yield service_pb2.multipleFilesResponse(files=all_files_info)
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
