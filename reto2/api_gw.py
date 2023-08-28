@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 import grpc_connection
+from configs import *
 
 app = Flask(__name__)
 conn = grpc_connection.grpc_connection()
@@ -16,4 +17,4 @@ def list_products():
     return jsonify({"files": files})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host = API_GW_HOST, port = API_GW_PORT)
