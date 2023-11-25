@@ -1,4 +1,4 @@
-# LAB 3-1: File Management in HDFS and S3
+# LAB 3-2: Data Catalog with Glue and Athena
 
 ## Course Details
 
